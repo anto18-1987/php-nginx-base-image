@@ -68,7 +68,7 @@ COPY config/supervisor.d/supervisor.ini /etc/supervisor.d/supervisor.ini
 
 RUN chmod 644 /etc/supervisord.conf && touch /var/log/supervisord.log
 
-RUN mkdir -p /var/log/newrelic /run/nginx/ \
+RUN mkdir -p /run/nginx/ \
     && chmod 777 /var/log/supervisord.log
 
 RUN usermod -u 1000 www-data
