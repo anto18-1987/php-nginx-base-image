@@ -1,0 +1,18 @@
+image: docker:20.10
+
+services:
+  - docker:20.10-dind
+
+stages:
+  - build
+
+variables:
+  DOCKER_IMAGE_NAME: anto18/php-fpm
+  DOCKER_REGISTRY: docker.io
+
+build_image:
+  stage: build
+  script:
+    - docker build -t $DOCKER_IMAGE_NAME .
+    - echo "$DOCKER_HUB_PASSWORD" | docker login -u $DOCKER_HUB_USERNAME --password-stdin
+    - docker push $DOCKER_IMAGE_NAME
